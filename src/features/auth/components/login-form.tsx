@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+// import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Mail, Lock, ArrowRight } from "lucide-react";
-import { Suspense, useState, useTransition } from "react";
+import { Suspense, useTransition } from "react";
 import { loginSchema, type LoginInput } from "@/validations/auth";
 import { loginAction } from "@/features/auth/actions/auth-actions";
 import { safeCallbackUrl } from "@/utils/safe-callback-url";
@@ -18,11 +18,12 @@ import { Label } from "@/components/ui/label";
 function LoginFormInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = safeCallbackUrl(
-    searchParams.get("callbackUrl"),
-    "/auth/continue",
-  );
-  const [googleLoading, setGoogleLoading] = useState(false);
+  // Only Google login used this; restore with it.
+  // const callbackUrl = safeCallbackUrl(
+  //   searchParams.get("callbackUrl"),
+  //   "/auth/continue",
+  // );
+  // const [googleLoading, setGoogleLoading] = useState(false);
   const [pending, startTransition] = useTransition();
 
   const {
@@ -57,12 +58,14 @@ function LoginFormInner() {
     });
   }
 
+  /* Google login disabled for now
   async function handleGoogle() {
     setGoogleLoading(true);
     await signIn("google", {
       callbackUrl,
     });
   }
+  */
 
   return (
     <div className="animate-fade-in">
@@ -126,6 +129,7 @@ function LoginFormInner() {
         </Button>
       </form>
 
+      {/* Google login disabled for now
       <div className="relative my-6">
         <div className="absolute inset-0 flex items-center">
           <div className="border-border w-full border-t" />
@@ -148,6 +152,7 @@ function LoginFormInner() {
         <GoogleIcon />
         Continue with Google
       </Button>
+      */}
 
       <p className="text-muted-foreground mt-8 text-center text-sm">
         Don&apos;t have an account?{" "}
@@ -162,6 +167,7 @@ function LoginFormInner() {
   );
 }
 
+/* Google login disabled for now
 function GoogleIcon() {
   return (
     <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden>
@@ -183,7 +189,7 @@ function GoogleIcon() {
       />
     </svg>
   );
-}
+}*/
 
 /**
  * Login form — email/password + Google OAuth.

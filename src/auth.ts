@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
+// import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { loginSchema } from "@/validations/auth";
 import { UserRole } from "@/constants/roles";
@@ -24,11 +24,12 @@ const ROLE_REFRESH_MS = 30_000;
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: createAuthAdapter(),
   providers: [
-    Google({
-      clientId: process.env.AUTH_GOOGLE_ID!,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
-      allowDangerousEmailAccountLinking: true,
-    }),
+    // Google login disabled for now
+    // Google({
+    //   clientId: process.env.AUTH_GOOGLE_ID!,
+    //   clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+    //   allowDangerousEmailAccountLinking: true,
+    // }),
     Credentials({
       name: "Email",
       credentials: {

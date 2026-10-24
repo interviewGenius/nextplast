@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+// import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Mail, Lock, User, ArrowRight, Briefcase } from "lucide-react";
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 import {
   publicRegisterRoles,
   registerSchema,
@@ -24,7 +24,7 @@ import { Label } from "@/components/ui/label";
  */
 export function RegisterForm() {
   const router = useRouter();
-  const [googleLoading, setGoogleLoading] = useState(false);
+  // const [googleLoading, setGoogleLoading] = useState(false);
   const [pending, startTransition] = useTransition();
 
   const {
@@ -56,10 +56,12 @@ export function RegisterForm() {
     });
   }
 
+  /* Google login disabled for now
   async function handleGoogle() {
     setGoogleLoading(true);
     await signIn("google", { callbackUrl: "/auth/continue" });
   }
+  */
 
   return (
     <div className="animate-fade-in">
@@ -173,6 +175,7 @@ export function RegisterForm() {
         </Button>
       </form>
 
+      {/* Google login disabled for now
       <div className="relative my-6">
         <div className="absolute inset-0 flex items-center">
           <div className="border-border w-full border-t" />
@@ -194,6 +197,7 @@ export function RegisterForm() {
       >
         Continue with Google
       </Button>
+      */}
 
       <p className="text-muted-foreground mt-8 text-center text-sm">
         Already have an account?{" "}

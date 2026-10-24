@@ -16,11 +16,13 @@ const envSchema = z.object({
 
   // Auth.js / NextAuth
   NEXTAUTH_URL: z.string().url("NEXTAUTH_URL must be a valid URL"),
-  NEXTAUTH_SECRET: z.string().min(32, "NEXTAUTH_SECRET must be at least 32 characters"),
+  NEXTAUTH_SECRET: z
+    .string()
+    .min(32, "NEXTAUTH_SECRET must be at least 32 characters"),
 
-  // Google OAuth
-  AUTH_GOOGLE_ID: z.string().min(1, "AUTH_GOOGLE_ID is required"),
-  AUTH_GOOGLE_SECRET: z.string().min(1, "AUTH_GOOGLE_SECRET is required"),
+  // Google OAuth (disabled for now)
+  // AUTH_GOOGLE_ID: z.string().min(1, "AUTH_GOOGLE_ID is required"),
+  // AUTH_GOOGLE_SECRET: z.string().min(1, "AUTH_GOOGLE_SECRET is required"),
 
   // Cloudinary
   CLOUDINARY_CLOUD_NAME: z.string().min(1, "CLOUDINARY_CLOUD_NAME is required"),
