@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { usePendingAction } from "@/hooks/use-pending-action";
+import { logout } from "@/features/auth/lib/logout";
 import {
   changePasswordAction,
   softDeleteAccountAction,
@@ -273,7 +274,7 @@ export function SettingsForms({ initial }: SettingsFormsProps) {
                 });
                 if (result.success) {
                   toast.success(result.message);
-                  window.location.href = "/api/auth/signout";
+                  await logout("/");
                 } else toast.error(result.error);
               })
             }
